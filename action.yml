@@ -5,4 +5,4 @@ runs:
     - run: echo Hello
       shell: bash
     - shell: pwsh
-      run: check
+      run: ${{ github.action_path }}/check.ps1
