@@ -1,0 +1,6 @@
+name: 'Reference checker'
+runs:
+  using: "composite"
+  steps:
+    - run: .\check.ps1
+      shell: pwsh
