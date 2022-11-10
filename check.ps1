@@ -18,7 +18,7 @@ $reff | ForEach {[PSCustomObject]$_} | Format-Table -AutoSize
 
 Write-Host "Test write from script"
 
-Write-Host $PSScriptRoot
+Write-Host $env:TEMPD
 
 $files = Get-ChildItem -Path (Join-Path $PSScriptRoot "*.csproj") -Recurse
 
