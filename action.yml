@@ -3,5 +3,4 @@ runs:
   using: "composite"
   steps:
     - shell: pwsh
-        run: |
-          .\check.ps1
+      run: check.ps1
