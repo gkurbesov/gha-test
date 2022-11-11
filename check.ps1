@@ -135,6 +135,41 @@ function Write-ActionWarning {
     Send-ActionCommand warning $params -Message $Message
 }
 
+function Write-ActionNotice {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position = 0, ParameterSetName = 'MsgOnly')]
+        [Parameter(Position = 0, ParameterSetName = 'File')]
+        [Parameter(Position = 0, ParameterSetName = 'Line')]
+        [Parameter(Position = 0, ParameterSetName = 'Column')]
+        [string]$Message = "",
+
+        [Parameter(Position = 1, ParameterSetName = 'File', Mandatory)]
+        [Parameter(Position = 1, ParameterSetName = 'Line', Mandatory)]
+        [Parameter(Position = 1, ParameterSetName = 'Column', Mandatory)]
+        [string]$File,
+
+        [Parameter(Position = 2, ParameterSetName = 'Line', Mandatory)]
+        [Parameter(Position = 2, ParameterSetName = 'Column', Mandatory)]
+        [int]$Line,
+
+        [Parameter(Position = 3, ParameterSetName = 'Column', Mandatory)]
+        [int]$Column
+    )
+    $params = [ordered]@{ }
+    if ($File) {
+        $params['file'] = $File
+    }
+    if ($PSCmdlet.ParameterSetName -in 'Column', 'Line') {
+        $params['line'] = $Line
+    }
+    if ($PSCmdlet.ParameterSetName -eq 'Column') {
+        $params['col'] = $Column
+    }
+    Send-ActionCommand notice $params -Message $Message
+}
+
+
 
 ## Used to signal output that is a command to Action/Workflow context
 if (-not (Get-Variable -Scope Script -Name CMD_STRING -ErrorAction SilentlyContinue)) {
@@ -277,6 +312,7 @@ function ConvertTo-ActionEscapedProperty {
 Write-Information "infa sotka"
 Write-Warning "waning bla"
 
+Write-ActionNotice "Notice text"
 Write-ActionWarning "Write warning"
 Write-ActionError "Write error"
 
