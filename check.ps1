@@ -28,6 +28,25 @@ foreach ($item in $files) {
 }
 #>
 
+function Send-ActionCommand {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position = 0, Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]$Command,
+
+        [Parameter(ParameterSetName = "WithProps", Position = 1, Mandatory)]
+        [System.Collections.IDictionary]$Properties,
+
+        [Parameter(ParameterSetName = "WithProps", Position = 2)]
+        [Parameter(ParameterSetName = "SkipProps", Position = 1)]
+        [string]$Message = ''
+    )
+
+    $cmdStr = ConvertTo-ActionCommandString $Command $Properties $Message
+    Write-Host $cmdStr
+}
+
 function Set-ActionFailed {
     [CmdletBinding()]
     param(
