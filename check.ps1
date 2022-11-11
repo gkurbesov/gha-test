@@ -21,9 +21,14 @@ Write-Host $env:TEMPD
 Write-Host "Test from env: "
 Write-Host $env:GITHUB_WORKSPACE
 
+Get-ChildItem -Path $env:GITHUB_WORKSPACE | Write-Output
+
+<#
 
 $files = Get-ChildItem -Path (Join-Path $PSScriptRoot "*.csproj") -Recurse
 
 foreach ($item in $files) {
     Write-Host "Project $item"
 }
+*/
+#>
