@@ -16,8 +16,7 @@ $reff = Select-Xml -Path "Product\DirectCrm\DirectCrm.Core\DirectCrm.Core.Model.
 $reff | ForEach {[PSCustomObject]$_} | Format-Table -AutoSize
 #>
 
-$ErrorActionPreference = "Stop"
-
+<#
 $projectFiles = Get-ChildItem -Path $env:GITHUB_WORKSPACE -Filter "*.csproj" -Recurse
 
 if ($projectFiles.Length -eq 0 ) {
@@ -27,5 +26,5 @@ if ($projectFiles.Length -eq 0 ) {
 foreach ($item in $files) {
     Write-Host "Project $item"
 }
-
+#>
 Write-Error "Test error"
