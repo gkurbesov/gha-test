@@ -16,12 +16,9 @@ $reff = Select-Xml -Path "Product\DirectCrm\DirectCrm.Core\DirectCrm.Core.Model.
 $reff | ForEach {[PSCustomObject]$_} | Format-Table -AutoSize
 #>
 
-Write-Host "Test from arg:"
-Write-Host $env:TEMPD
-Write-Host "Test from env: "
-Write-Host $env:GITHUB_WORKSPACE
+Write-Host "List files:"
 
-Get-ChildItem -Path $env:GITHUB_WORKSPACE | Write-Output
+Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Name | Write-Output
 
 <#
 
