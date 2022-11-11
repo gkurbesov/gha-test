@@ -27,4 +27,32 @@ foreach ($item in $files) {
     Write-Host "Project $item"
 }
 #>
-Write-Error "Test error"
+function Write-ActionError {
+    param(
+        [string]$Message=""
+    )
+
+    Send-ActionCommand error $Message
+}
+
+ function Write-ActionWarning {
+    param(
+        [string]$Message=""
+    )
+
+    Send-ActionCommand warning $Message
+}
+
+ function Write-ActionInfo {
+    param(
+        [string]$Message=""
+    )
+
+    ## Hmm, which one??
+    #Write-Host "$($Message)$([System.Environment]::NewLine)"
+    Write-Output "$($Message)$([System.Environment]::NewLine)"
+}
+
+Write-ActionInfo "Test info"
+Write-ActionWarning "Test warning"
+Write-ActionError "Test error"
