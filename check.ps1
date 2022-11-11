@@ -47,16 +47,6 @@ function Send-ActionCommand {
     Write-Host $cmdStr
 }
 
-function Set-ActionFailed {
-    [CmdletBinding()]
-    param(
-        [Parameter(Position = 0)]
-        [string]$Message = ""
-    )
-    [System.Environment]::ExitCode = 1
-    Write-ActionError $Message
-}
-
 function Write-ActionDebug {
     [CmdletBinding()]
     param(
@@ -65,6 +55,16 @@ function Write-ActionDebug {
     )
 
     Send-ActionCommand debug $Message
+}
+
+function Set-ActionFailed {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position = 0)]
+        [string]$Message = ""
+    )
+    Write-ActionError $Message
+    exit 1
 }
 
 function Write-ActionError {
@@ -279,6 +279,5 @@ Write-ActionDebug "Write debug"
 Write-ActionWarning "Write warning"
 Write-ActionError "Write error"
 
-Write-Host "set action as failed"
 
 Set-ActionFailed "Failed fuck!"
