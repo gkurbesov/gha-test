@@ -27,6 +27,38 @@ foreach ($item in $files) {
     Write-Host "Project $item"
 }
 #>
+function Send-ActionCommand {
+    param(
+        [Parameter(Position=0, Mandatory)]
+        [string]$Command,
+
+        [Parameter(ParameterSetName="WithProps", Position=1, Mandatory)]
+        [hashtable]$Properties,
+
+        [Parameter(ParameterSetName="WithProps", Position=2)]
+        [Parameter(ParameterSetName="SkipProps", Position=1)]
+        [string]$Message=''
+    )
+
+    if (-not $Command) {
+        $Command = 'missing.command'
+    }
+
+    $cmdStr = "$($CMD_STRING)$($Command)"
+    if ($Properties.Count -gt 0) {
+        $cmdStr += ' '
+        foreach ($key in $Properties.Keys) {
+            $val = ConvertTo-EscapedValue -Value $Properties[$key]
+            $cmdStr += "$($key)=$($val)"
+        }
+    }
+    $cmdStr += $CMD_STRING
+    $cmdStr += ConvertTo-EscapedData -Value $Message
+    $cmdStr += [System.Environment]::NewLine
+
+    return $cmdStr
+}
+
 function Write-ActionError {
     param(
         [string]$Message=""
