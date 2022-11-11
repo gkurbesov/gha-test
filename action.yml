@@ -6,4 +6,4 @@ runs:
       shell: pwsh
       run: ${{ github.action_path }}/check.ps1
       env:
-        TEMPD: ${{ inputs.workingDir }}
+        TEMPD: ${{ github.workspace }}
