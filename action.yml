@@ -2,8 +2,6 @@ name: 'Reference checker'
 runs:
   using: "composite"
   steps:
-    - name: Checker
+    - name: Check references in projects
       shell: pwsh
       run: ${{ github.action_path }}/check.ps1
-      env:
-        TEMPD: ${{ github.workspace }}

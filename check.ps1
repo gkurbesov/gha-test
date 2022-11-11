@@ -18,14 +18,16 @@ $reff | ForEach {[PSCustomObject]$_} | Format-Table -AutoSize
 
 Write-Host "List files:"
 
-Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Name | Write-Output
+# Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Name | Write-Output
 
-<#
 
-$files = Get-ChildItem -Path (Join-Path $PSScriptRoot "*.csproj") -Recurse
+$files = Get-ChildItem -Path (Join-Path $env:GITHUB_WORKSPACE "*.csproj") -Recurse
+
+if ($files.Length -eq 0 ) {
+    Write-Error "Files not found"
+}
 
 foreach ($item in $files) {
     Write-Host "Project $item"
 }
-*/
-#>
+
