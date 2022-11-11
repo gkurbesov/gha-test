@@ -16,18 +16,16 @@ $reff = Select-Xml -Path "Product\DirectCrm\DirectCrm.Core\DirectCrm.Core.Model.
 $reff | ForEach {[PSCustomObject]$_} | Format-Table -AutoSize
 #>
 
-Write-Host "List files:"
+$ErrorActionPreference = "Stop"
 
-# Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse -Name | Write-Output
+$projectFiles = Get-ChildItem -Path $env:GITHUB_WORKSPACE -Filter "*.csproj" -Recurse
 
-
-$files = Get-ChildItem -Path (Join-Path $env:GITHUB_WORKSPACE "*.csproj") -Recurse
-
-if ($files.Length -eq 0 ) {
-    Write-Error "Files not found"
+if ($projectFiles.Length -eq 0 ) {
+    Write-Error "Project files not found"
 }
 
 foreach ($item in $files) {
     Write-Host "Project $item"
 }
 
+Write-Error "Test error"
