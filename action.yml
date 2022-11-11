@@ -4,4 +4,4 @@ runs:
   steps:
     - name: Check references in projects
       shell: pwsh
-      run: ${{ github.action_path }}/check.ps1 -ErrorAction Stop
+      run: ${{ github.action_path }}/check.ps1
