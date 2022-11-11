@@ -274,8 +274,7 @@ function ConvertTo-ActionEscapedProperty {
     Replace(',', '%2C')
 }
 
-
-Write-ActionDebug "Write debug"
+Write-Information "infa sotka"
 Write-ActionWarning "Write warning"
 Write-ActionError "Write error"
 
