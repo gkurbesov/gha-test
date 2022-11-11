@@ -64,7 +64,7 @@ function Set-ActionFailed {
         [string]$Message = ""
     )
     Write-ActionError $Message
-    exit 1
+    #exit 1
 }
 
 function Write-ActionError {
