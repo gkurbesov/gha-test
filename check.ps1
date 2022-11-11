@@ -309,10 +309,10 @@ function ConvertTo-ActionEscapedProperty {
     Replace(',', '%2C')
 }
 
-Write-Information "infa sotka"
-Write-Warning "waning bla"
+Write-Information "\u001b[38;5;6minfa sotka"
+Write-Warning "\u001b[38;5;6mwaning bla"
 
-Write-ActionNotice "Notice text"
+Write-ActionNotice "\u001b[38;5;6mNotice text"
 Write-ActionWarning "Write warning"
 Write-ActionError "Write error"
 
