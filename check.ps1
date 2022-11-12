@@ -69,9 +69,7 @@ if($ProjectFiles.Length -eq 0) {
 
 foreach ($ProjectFile in $ProjectFiles) {
     $file = $ProjectFile
-
-    Write-Host $ProjectFile
-
+    
     $project = $ProjectFile.BaseName + $ProjectFile.Extension
 
     $PackagesReferences = Get-PackageReferences $file
