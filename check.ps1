@@ -60,7 +60,6 @@ function Get-ProjectReferences {
     return Select-Xml -Path $Path -XPath "//ProjectReference" | ForEach-Object { Split-Path $_.node.Include -leaf }
 }
 
-
 $ProjectFiles = Get-ProjectFiles $env:GITHUB_WORKSPACE
 
 if($ProjectFiles.Length -eq 0) {
@@ -70,7 +69,10 @@ if($ProjectFiles.Length -eq 0) {
 
 foreach ($ProjectFile in $ProjectFiles) {
     $file = $ProjectFile
-    $project = $ProjectFile.BaseName
+
+    Write-Host $ProjectFile
+
+    $project = $ProjectFile.BaseName + $ProjectFile.Extension
 
     $PackagesReferences = Get-PackageReferences $file
     $ProjectReferences = Get-ProjectReferences $file
