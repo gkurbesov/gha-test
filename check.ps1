@@ -76,6 +76,7 @@ foreach ($ProjectFile in $ProjectFiles) {
     $ProjectReferences = Get-ProjectReferences $file
 
     Write-Host "`e[32mProject: $project"
+    Write-Host $file
     Write-Host "`tPackages:"
     $PackagesReferences | ForEach-Object { Write-Host "`t`t" $_ }
     Write-Host "`tProjects:"
